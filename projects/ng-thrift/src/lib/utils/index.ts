@@ -1,1 +1,2 @@
-export * from './is-thrift-lib';
+export * from './namespace-type';
+export * from './object-to-json';
