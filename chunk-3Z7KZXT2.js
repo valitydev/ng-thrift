@@ -1,0 +1,1 @@
+import"./chunk-P2VZOJAX.js";var t=[{path:"",redirectTo:"what-is-vality-angular-libraries",pathMatch:"full"},{path:"",title:"Getting Started",children:[{path:"what-is-vality-angular-libraries",loadChildren:()=>import("./chunk-ZIRFUR5M.js")}]}],a=t;export{a as default};
