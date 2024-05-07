@@ -1,0 +1,65 @@
+{
+  "name": "ng-thrift",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng build ng-thrift --watch --configuration development",
+    "doc": "ng serve --port 4500",
+    "build": "ng build ng-thrift && ng build ng-thrift-doc --base-href='./'",
+    "test": "ng test ng-thrift",
+    "test:ci": "npm run test -- --browsers=ChromeHeadless --watch=false",
+    "format": "prettier \"**\" --list-different",
+    "format:fix": "prettier \"**\" --write --log-level warn",
+    "lint": "eslint \"**\" --max-warnings=0",
+    "lint:fix": "eslint \"**\" --fix",
+    "spell": "cspell --no-progress **",
+    "spell:fix": "cspell --no-progress --show-suggestions --show-context **",
+    "check": "npm run format && npm run lint && npm run spell",
+    "fix": "npm run format:fix && npm run lint:fix && npm run spell:fix"
+  },
+  "private": true,
+  "workspaces": [
+    "./projects/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valitydev/ng-thrift"
+  },
+  "dependencies": {
+    "@angular/animations": "^17.2.1",
+    "@angular/common": "^17.2.1",
+    "@angular/compiler": "^17.2.1",
+    "@angular/core": "^17.2.1",
+    "@angular/forms": "^17.2.1",
+    "@angular/platform-browser": "^17.2.1",
+    "@angular/platform-browser-dynamic": "^17.2.1",
+    "@angular/router": "^17.2.1",
+    "@ng-doc/app": "17.5.5",
+    "@ng-doc/builder": "17.5.5",
+    "@ng-doc/core": "17.5.5",
+    "@ng-doc/ui-kit": "17.5.5",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.2"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^17.2.0",
+    "@angular/cli": "~17.2.0",
+    "@angular/compiler-cli": "^17.2.1",
+    "@types/jasmine": "~4.3.0",
+    "@vality/cspell-config": "^8.0.1-a6a2910.0",
+    "@vality/eslint-config": "^8.2.1-a6a2910.0",
+    "@vality/prettier-config": "^3.1.1-a6a2910.0",
+    "cspell": "^8.3.2",
+    "eslint": "^8.56.0",
+    "jasmine-core": "~4.5.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "ng-packagr": "^17.2.0",
+    "prettier": "^3.1.1",
+    "typescript": "~5.2.2"
+  }
+}
