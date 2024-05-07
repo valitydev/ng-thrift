@@ -1,21 +1,6 @@
 import { JsonAST } from '@vality/thrift-ts';
 
-import type { ListType, MapType, SetType, ThriftType, ValueType } from '@vality/thrift-ts';
-
-import { ThriftAstMetadata, PRIMITIVE_TYPES, StructureType, STRUCTURE_TYPES } from '../types';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isThriftObject(value: any): boolean {
-    return typeof value?.['write'] === 'function' && typeof value?.['read'] === 'function';
-}
-
-export function isComplexType(type: ValueType): type is SetType | ListType | MapType {
-    return typeof type === 'object';
-}
-
-export function isPrimitiveType(type: ValueType): type is ThriftType {
-    return PRIMITIVE_TYPES.includes(type as never);
-}
+import { ThriftAstMetadata, StructureType, STRUCTURE_TYPES } from '../types';
 
 export interface NamespaceObjectType {
     namespaceMetadata: ThriftAstMetadata;
@@ -51,19 +36,4 @@ export function parseNamespaceObjectType(
             ...{ [namespace]: { path: (namespaceMetadata as ThriftAstMetadata).path } },
         },
     };
-}
-
-export interface NamespaceType<T extends ValueType = ValueType> {
-    namespace: string;
-    type: T;
-}
-
-export function parseNamespaceType<T extends ValueType>(
-    type: T,
-    namespace?: string,
-): NamespaceType<T> {
-    if (type && !isPrimitiveType(type) && !isComplexType(type) && type.includes('.')) {
-        [namespace, type as unknown] = type.split('.');
-    }
-    return { namespace: namespace as string, type };
 }
