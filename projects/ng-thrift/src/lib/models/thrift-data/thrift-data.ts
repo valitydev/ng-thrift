@@ -8,39 +8,10 @@ import {
     isPrimitiveType,
     parseNamespaceObjectType,
     parseNamespaceType,
+    isRequiredField,
 } from '../../utils';
 
-export enum TypeGroup {
-    Complex = 'complex',
-    Primitive = 'primitive',
-    Object = 'object',
-}
-
-export function getAliases(data: ThriftData): ThriftData[] {
-    let alias: ThriftData | undefined = data?.parent;
-    const path: ThriftData[] = [];
-    while (alias && alias.objectType === 'typedef' && alias.parent) {
-        path.push(alias);
-        alias = alias?.parent;
-    }
-    return path;
-}
-
-export function getByType(data: ThriftData, type: string, namespace: string): ThriftData | null {
-    return data
-        ? ([data, ...getAliases(data)].find(
-              (d) => d.type === type && d.namespace === namespace,
-          ) as ThriftData)
-        : null;
-}
-
-export function isTypeWithAliases(data: ThriftData, type: string, namespace: string): boolean {
-    return Boolean(getByType(data, type, namespace));
-}
-
-export function isRequiredField(field: Field | undefined): boolean {
-    return field?.option === 'required'; // optional even if not explicitly stated
-}
+import { TypeGroup } from './types/type-group';
 
 export class ThriftData<T extends ValueType = ValueType, S extends StructureType = StructureType> {
     typeGroup!: TypeGroup;
