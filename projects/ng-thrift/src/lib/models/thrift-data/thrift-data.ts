@@ -2,15 +2,13 @@ import { Field, ValueType, JsonAST } from '@vality/thrift-ts';
 import { TypeDefs } from '@vality/thrift-ts/src/thrift-parser';
 import { ValuesType } from 'utility-types';
 
+import { StructureType, ThriftAstMetadata } from '../../types';
 import {
     isComplexType,
     isPrimitiveType,
     parseNamespaceObjectType,
     parseNamespaceType,
-} from '../utils';
-
-import { StructureType } from './structure-type';
-import { ThriftAstMetadata } from './thrift-ast-metadata';
+} from '../../utils';
 
 export enum TypeGroup {
     Complex = 'complex',
@@ -18,9 +16,9 @@ export enum TypeGroup {
     Object = 'object',
 }
 
-export function getAliases(data: MetadataFormData): MetadataFormData[] {
-    let alias: MetadataFormData | undefined = data?.parent;
-    const path: MetadataFormData[] = [];
+export function getAliases(data: ThriftData): ThriftData[] {
+    let alias: ThriftData | undefined = data?.parent;
+    const path: ThriftData[] = [];
     while (alias && alias.objectType === 'typedef' && alias.parent) {
         path.push(alias);
         alias = alias?.parent;
@@ -28,23 +26,15 @@ export function getAliases(data: MetadataFormData): MetadataFormData[] {
     return path;
 }
 
-export function getByType(
-    data: MetadataFormData,
-    type: string,
-    namespace: string,
-): MetadataFormData | null {
+export function getByType(data: ThriftData, type: string, namespace: string): ThriftData | null {
     return data
         ? ([data, ...getAliases(data)].find(
               (d) => d.type === type && d.namespace === namespace,
-          ) as MetadataFormData)
+          ) as ThriftData)
         : null;
 }
 
-export function isTypeWithAliases(
-    data: MetadataFormData,
-    type: string,
-    namespace: string,
-): boolean {
+export function isTypeWithAliases(data: ThriftData, type: string, namespace: string): boolean {
     return Boolean(getByType(data, type, namespace));
 }
 
@@ -52,10 +42,7 @@ export function isRequiredField(field: Field | undefined): boolean {
     return field?.option === 'required'; // optional even if not explicitly stated
 }
 
-export class MetadataFormData<
-    T extends ValueType = ValueType,
-    S extends StructureType = StructureType,
-> {
+export class ThriftData<T extends ValueType = ValueType, S extends StructureType = StructureType> {
     typeGroup!: TypeGroup;
 
     namespace!: string;
@@ -70,7 +57,7 @@ export class MetadataFormData<
      * Parent who is not typedef
      */
     get trueParent() {
-        let data: MetadataFormData | undefined = this.parent;
+        let data: ThriftData | undefined = this.parent;
         while (data?.objectType === 'typedef') {
             data = data.parent;
         }
@@ -81,13 +68,13 @@ export class MetadataFormData<
      * Path to the object without aliases
      */
     get trueTypeNode() {
-        const typedefs: MetadataFormData<ValueType, 'typedef'>[] = [];
-        let currentData: MetadataFormData = this as never;
+        const typedefs: ThriftData<ValueType, 'typedef'>[] = [];
+        let currentData: ThriftData = this as never;
         while (currentData.objectType === 'typedef') {
             typedefs.push(currentData as never);
             currentData = currentData.create({
                 type: (
-                    (currentData as MetadataFormData<ValueType, 'typedef'>)
+                    (currentData as ThriftData<ValueType, 'typedef'>)
                         ?.ast as never as ValuesType<TypeDefs>
                 )?.type,
             });
@@ -104,7 +91,7 @@ export class MetadataFormData<
         namespace: string,
         type: T,
         public field?: Field,
-        public parent?: MetadataFormData,
+        public parent?: ThriftData,
     ) {
         this.setNamespaceType(namespace, type);
         this.setTypeGroup();
@@ -113,8 +100,8 @@ export class MetadataFormData<
         }
     }
 
-    create(params: { type?: ValueType; field?: Field }): MetadataFormData {
-        return new MetadataFormData(
+    create(params: { type?: ValueType; field?: Field }): ThriftData {
+        return new ThriftData(
             this.metadata,
             this.namespace,
             (params.type ?? params.field?.type) as ValueType,
