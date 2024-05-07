@@ -17,6 +17,6 @@ export function getUnionKey<T>(obj: T): keyof T | null {
     return get(getUnionKeyValue(obj), 0, null);
 }
 
-export function getUnionValue<T extends object>(obj: T): ValuesType<T> | null {
+export function getUnionValue<T>(obj: T): (T extends object ? ValuesType<T> : never) | null {
     return get(getUnionKeyValue(obj), 1, null) as never;
 }
