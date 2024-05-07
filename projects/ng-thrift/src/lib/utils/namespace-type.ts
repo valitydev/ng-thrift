@@ -2,19 +2,7 @@ import { JsonAST } from '@vality/thrift-ts';
 
 import type { ListType, MapType, SetType, ThriftType, ValueType } from '@vality/thrift-ts';
 
-import { ThriftAstMetadata } from '../types';
-
-export const PRIMITIVE_TYPES = [
-    'int',
-    'bool',
-    'i8',
-    'i16',
-    'i32',
-    'i64',
-    'string',
-    'double',
-    'binary',
-] as const;
+import { ThriftAstMetadata, PRIMITIVE_TYPES, StructureType, STRUCTURE_TYPES } from '../types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isThriftObject(value: any): boolean {
@@ -28,9 +16,6 @@ export function isComplexType(type: ValueType): type is SetType | ListType | Map
 export function isPrimitiveType(type: ValueType): type is ThriftType {
     return PRIMITIVE_TYPES.includes(type as never);
 }
-
-export type StructureType = keyof JsonAST;
-export const STRUCTURE_TYPES: StructureType[] = ['typedef', 'struct', 'union', 'exception', 'enum'];
 
 export interface NamespaceObjectType {
     namespaceMetadata: ThriftAstMetadata;

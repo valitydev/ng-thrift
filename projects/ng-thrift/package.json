@@ -3,8 +3,6 @@
   "version": "17.0.0",
   "sideEffects": false,
   "dependencies": {
-    "@vality/ng-core": "^17.2.1-a6a2910.0",
-    "@vality/thrift-ts": "^2.4.1-8ad5123.0",
     "tslib": "^2.3.0",
     "yaml": "^2.4.2"
   },
@@ -14,6 +12,8 @@
     "@angular/core": "^17.2.0",
     "@angular/material": "^17.2.0",
     "@types/lodash-es": "^4.0.0",
+    "@vality/ng-core": "^17.2.1-a6a2910.0",
+    "@vality/thrift-ts": "^2.4.1-8ad5123.0",
     "lodash-es": "^4.0.0",
     "rxjs": "^7.0.0",
     "utility-types": "^3.0.0"
