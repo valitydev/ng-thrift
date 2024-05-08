@@ -8,4 +8,3 @@ export * from './is-thrift-object';
 export * from './is-complex-type';
 export * from './is-primitive-type';
 export * from './parse-namespace-type';
-export * from './parse-namespace-type';
