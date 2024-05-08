@@ -52,7 +52,7 @@
     "@vality/prettier-config": "^3.1.1-a6a2910.0",
     "cspell": "^8.3.2",
     "eslint": "^8.56.0",
-    "jasmine-core": "~4.5.0",
+    "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
