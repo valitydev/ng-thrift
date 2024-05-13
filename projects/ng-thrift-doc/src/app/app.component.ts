@@ -15,7 +15,7 @@ import {
 import * as packageJson from '../../../../package.json';
 
 @Component({
-    selector: 'app-root',
+    selector: 'ngt-root',
     standalone: true,
     imports: [
         RouterOutlet,
