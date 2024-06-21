@@ -46,7 +46,7 @@
     "@angular-devkit/build-angular": "^18.0.4",
     "@angular/cli": "~18.0.4",
     "@angular/compiler-cli": "^18.0.3",
-    "@types/jasmine": "~4.3.0",
+    "@types/jasmine": "~4.6.0",
     "@vality/cspell-config": "^8.0.1-a6a2910.0",
     "@vality/eslint-config-ng": "^18.0.1-pr-63-e72dd8e.0",
     "@vality/prettier-config": "^3.1.1-a6a2910.0",
