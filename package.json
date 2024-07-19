@@ -34,7 +34,7 @@
     "@angular/platform-browser": "^18.0.3",
     "@angular/platform-browser-dynamic": "^18.0.3",
     "@angular/router": "^18.0.3",
-    "@ng-doc/app": "17.5.5",
+    "@ng-doc/app": "17.6.16",
     "@ng-doc/builder": "17.5.5",
     "@ng-doc/core": "17.5.5",
     "@ng-doc/ui-kit": "17.5.5",
