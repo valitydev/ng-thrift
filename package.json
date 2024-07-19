@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.0.4",
-    "@angular/cli": "~18.0.4",
+    "@angular/cli": "~18.1.0",
     "@angular/compiler-cli": "^18.0.3",
     "@types/jasmine": "~4.3.0",
     "@vality/cspell-config": "^8.0.1-a6a2910.0",
