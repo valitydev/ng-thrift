@@ -37,7 +37,7 @@
     "@ng-doc/app": "17.5.5",
     "@ng-doc/builder": "17.5.5",
     "@ng-doc/core": "17.5.5",
-    "@ng-doc/ui-kit": "17.5.5",
+    "@ng-doc/ui-kit": "17.6.16",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
